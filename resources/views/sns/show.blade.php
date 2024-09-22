@@ -15,9 +15,13 @@
 
                     <!-- ↓テンプレート↓ -->
                     <section class="text-gray-600 body-font">
-                        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+                        <div class="container mx-auto flex px-5 py-5 items-center justify-center flex-col">
+                            
                             @if( !is_null($post->post_blob) )
-                            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="{{ asset('storage/images/'.$post->post_blob) }}">
+                            <p class="mb-3 leading-relaxed">投稿画像：</p>
+                            <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="" src="{{asset('storage/images/'.$post->post_blob)}}">
+                            @else
+                            <p class="mb-3 leading-relaxed">投稿画像：無し</p>
                             @endif
 
                             <div class="text-center lg:w-2/3 w-full">
@@ -25,6 +29,8 @@
                                     投稿文：
                                     @if( !is_null($post->post_text) )
                                         {{ $post->post_text }}
+                                    @else
+                                        無し
                                     @endif
                                 </p>
 
@@ -39,7 +45,7 @@
                                         @csrf
                                         @method('delete')
                                         <button class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
-                                            削除
+                                            投稿の削除
                                         </button>
                                     </form>
                                 </div>

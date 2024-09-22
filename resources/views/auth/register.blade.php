@@ -42,7 +42,7 @@
         <!-- ↓新規追加↓ -->
 
         <!-- プロフィール文 -->
-        <div>
+        <div class="mt-4">
             <x-input-label for="profile_text" value="プロフィール文" />
             <!-- <x-text-input id="profile_text" class="block mt-1 w-full" type="text" name="profile_text" :value="old('profile_text')" /> -->
             <input id="profile_text" class="block mt-1 w-full" type="text" name="profile_text" value="{{old('profile_text')}}">
@@ -50,7 +50,7 @@
         </div>
 
         <!-- プロフィール画像 -->
-        <div>
+        <div class="mt-4">
             <x-input-label for="profile_image" value="プロフィール画像" />
             <!-- <x-text-input id="profile_image" class="block mt-1 w-full" type="file" name="profile_image" :value="old('profile_image')" /> -->
             <input id="profile_image" class="block mt-1 w-full" type="file" name="profile_image" value="{{old('profile_image')}}">

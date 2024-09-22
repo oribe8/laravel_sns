@@ -14,7 +14,7 @@
                     <!-- ↓編集ここから↓ -->
                     <!-- ↓テンプレート1↓ -->
                     <section class="text-gray-600 body-font">
-                        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+                        <div class="container mx-auto flex px-5 py-5 md:flex-row flex-col items-center">
                             <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                                 <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                                     {{ $user->name }}
@@ -51,7 +51,11 @@
                                 @endauth
                             </div>
                             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                                <img class="object-cover object-center rounded" alt="" src="{{ asset('storage/images/'.$user->profile_image) }}">
+                                @if( !is_null($user->profile_image) )
+                                <img class="h-52 object-cover object-center rounded mx-auto my-0" alt="" src="{{ asset('storage/images/'.$user->profile_image) }}">
+                                @else
+                                <img class="h-52 object-cover object-center rounded mx-auto my-0" alt="" src="{{ asset('storage/images/no_image_icon.png') }}">
+                                @endif
                             </div>
                         </div>
                     </section>
@@ -60,18 +64,18 @@
                     <!-- ユーザーの投稿表示 -->
                     <!-- ↓テンプレート2↓ -->
                     <section class="text-gray-600 body-font">
-                        <div class="container px-5 py-24 mx-auto">
+                        <h3 class="title-font sm:text-2xl text-2xl mt-8 mb-4 font-medium text-gray-900 text-center md:text-justify md:ml-4">
+                            {{ $user->name }}の投稿一覧
+                        </h3>
+                        <div class="container px-5 py-5 mx-auto">
                             <div class="flex flex-wrap -m-4">
                                 @foreach($posts as $post)
-                                    @php
-                                        $imageUrl=asset('storage/images/'.$post->post_blob);
-                                    @endphp
-                                    <div class="p-4 lg:w-1/3">
-                                    <!-- 投稿画像表示 -->
+                                    <div class="p-4 w-full md:w-1/3">
+                                    <!-- 投稿で画像があるかないかでタグを出し分け -->
                                     @if( !is_null($post->post_blob) )
-                                        <div class="h-full bg-cover px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url('{{asset('storage/images/'.$post->post_blob)}}')">
+                                        <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/'.$post->post_blob)}})">
                                     @else
-                                        <div class="h-full bg-gray-500 bg-opacity-50 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                                        <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/no_image_icon.png')}})">
                                     @endif
 
                                             <div class="absolute top-2 right-2">
@@ -88,7 +92,9 @@
                                                 <span class="bg-white">
                                                     投稿文：
                                                     @if( !is_null($post->post_text) )
-                                                    {{ $post->post_text }}
+                                                        {{ $post->post_text }}
+                                                    @else
+                                                        無し
                                                     @endif
                                                 </span>
                                             </p>
@@ -99,7 +105,6 @@
                                             </a>
                                         </div>
                                         
-                                            
                                         </div>
                                     </div>
                                 @endforeach

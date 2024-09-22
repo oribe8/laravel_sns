@@ -60,7 +60,7 @@
         <div>
             <x-input-label for="profile_image" value="プロフィール画像" />
             @if(!is_null($user->profile_image))
-            <img src="{{ asset('storage/images/'.$user->profile_image) }}" alt="">
+            <img class="my-4 mx-auto" src="{{ asset('storage/images/'.$user->profile_image) }}" alt="">
             @endif
             <input id="profile_image" class="block mt-1 w-full" type="file" name="profile_image" value="{{old('profile_image',$user->profile_image)}}">
             <x-input-error :messages="$errors->get('profile_image')" />

@@ -18,17 +18,15 @@
 
                     <!-- ↓テンプレート↓ -->
                     <section class="text-gray-600 body-font">
-                        <div class="container px-5 py-24 mx-auto">
+                        <div class="container px-5 py-5 mx-auto">
                             <div class="flex flex-wrap -m-4">
                                 @foreach($posts as $post)
-                                    @php
-                                        $imageUrl=asset('storage/images/'.$post->post_blob);
-                                    @endphp
-                                    <div class="p-4 lg:w-1/3">
+                                    <div class="p-4 w-full md:w-1/3">
+                                    <!-- 投稿で画像があるかないかでタグを出し分け -->
                                     @if( !is_null($post->post_blob) )
-                                        <div class="h-full bg-cover px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url('{{asset('storage/images/'.$post->post_blob)}}')">
+                                        <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/'.$post->post_blob)}})">
                                     @else
-                                        <div class="h-full bg-gray-500 bg-opacity-50 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                                        <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/no_image_icon.png')}})">
                                     @endif
 
                                             <div class="absolute top-2 right-2">
@@ -44,7 +42,9 @@
                                                 <span class="bg-white">
                                                     投稿文：
                                                     @if( !is_null($post->post_text) )
-                                                    {{ $post->post_text }}
+                                                        {{ $post->post_text }}
+                                                    @else
+                                                        無し
                                                     @endif
                                                 </span>
                                             </p>

@@ -23,6 +23,9 @@
                     <x-nav-link :href="route('sns.create')" :active="request()->routeIs('sns.create')">
                         新規投稿
                     </x-nav-link>
+                    <x-nav-link :href="route('sns.userpage',auth()->id())" :active="request()->routeIs('sns.userpage')">
+                        マイページ
+                    </x-nav-link>
                     @endauth
                     <!-- ↑新規追加↑ -->
                 </div>
@@ -101,6 +104,9 @@
             <x-responsive-nav-link :href="route('sns.create')" :active="request()->routeIs('sns.create')">
                 新規投稿
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sns.userpage',auth()->id())" :active="request()->routeIs('sns.userpage')">
+                マイページ
+            </x-responsive-nav-link>
             @endauth
             <!-- ↑新規追加↑ -->
         </div>
@@ -115,6 +121,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @auth<!-- ←新規追加 -->
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
@@ -129,6 +136,14 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+                @else<!-- ←新規追加 -->
+                <x-responsive-nav-link :href="route('login')">
+                    ログイン
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('register')">
+                    新規会員登録
+                </x-responsive-nav-link>
+                @endauth<!-- ←新規追加 -->
             </div>
         </div>
     </div>
