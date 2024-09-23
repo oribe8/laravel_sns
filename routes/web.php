@@ -18,10 +18,10 @@ Route::get('/dashboard',[PostController::class,'index'])->middleware(['auth'])->
 // ----------↑新規追加↑----------
 
 Route::get('/', function () {
-    // return view('welcome'); //コメントアウト
+    // return view('welcome'); //不要のためコメントアウト
 });
 
-// ↓コメントアウト
+// ↓不要のためコメントアウト
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

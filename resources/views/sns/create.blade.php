@@ -12,6 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <!-- ↓編集ここから↓ -->
+                    <!-- セッションにメッセージが保存されている場合は出力させる -->
                     @if(session('message'))
                         <p>{{ session('message') }}</p>
                     @endif
@@ -21,6 +22,7 @@
                             <div class="flex flex-wrap -m-2">
                                 <form method="post" action="{{ route('sns.store') }}" enctype="multipart/form-data">
                                 @csrf
+                                    <!-- 投稿文のフォーム送信用 -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="message" class="leading-7 text-sm text-gray-600">投稿文</label>
@@ -28,6 +30,7 @@
                                             <textarea id="message" name="post_text" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{old('post_text')}}</textarea>
                                         </div>
                                     </div>
+                                    <!-- 投稿画像のフォーム送信用 -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="postimageId" class="leading-7 text-sm text-gray-600">画像</label>
@@ -35,6 +38,7 @@
                                             <input type="file" id="postimageId" name="post_blob" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value="{{old('post_blob')}}">
                                         </div>
                                     </div>
+                                    <!-- 投稿ボタン -->
                                     <div class="p-2 w-full">
                                         <input type="submit" value="送信" class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
                                     </div>

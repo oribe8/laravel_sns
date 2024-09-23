@@ -16,11 +16,12 @@
                     <section class="text-gray-600 body-font">
                         <div class="container mx-auto flex px-5 py-5 md:flex-row flex-col items-center">
                             <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                                <!-- 投稿者名表示 -->
                                 <h2 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                                     {{ $user->name }}
                                 </h2>
                                 <p class="mb-8 leading-relaxed">
-                                    <!-- プロフィール文表示 -->
+                                    <!-- プロフィール文があれば表示 -->
                                     <p>プロフィール文：
                                     @if( !is_null($user->profile_text) )
                                         {{ $user->profile_text }}
@@ -51,9 +52,12 @@
                                 @endauth
                             </div>
                             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                                <!-- プロフィール画像があるかないかで内容出し分け -->
                                 @if( !is_null($user->profile_image) )
+                                <!-- プロフィール画像出力 -->
                                 <img class="h-52 object-cover object-center rounded mx-auto my-0" alt="" src="{{ asset('storage/images/'.$user->profile_image) }}">
                                 @else
+                                <!-- noimage画像出力 -->
                                 <img class="h-52 object-cover object-center rounded mx-auto my-0" alt="" src="{{ asset('storage/images/no_image_icon.png') }}">
                                 @endif
                             </div>
@@ -65,19 +69,23 @@
                     <!-- ↓テンプレート2↓ -->
                     <section class="text-gray-600 body-font">
                         <h3 class="title-font sm:text-2xl text-2xl mt-8 mb-4 font-medium text-gray-900 text-center md:text-justify md:ml-4">
+                            <!-- 投稿者名表示 -->
                             {{ $user->name }}の投稿一覧
                         </h3>
                         <div class="container px-5 py-5 mx-auto">
                             <div class="flex flex-wrap -m-4">
                                 @foreach($posts as $post)
                                     <div class="p-4 w-full md:w-1/3">
-                                    <!-- 投稿で画像があるかないかでタグを出し分け -->
+                                    <!-- 投稿に画像があるかないかでタグを出し分け -->
                                     @if( !is_null($post->post_blob) )
+                                        <!-- 各投稿に保存されている画像を背景として出力 -->
                                         <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/'.$post->post_blob)}})">
                                     @else
+                                        <!-- noimage画像を背景として出力 -->
                                         <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/no_image_icon.png')}})">
                                     @endif
 
+                                            <!-- 「投稿者名」「投稿者ページへのリンク」を出力 -->
                                             <div class="absolute top-2 right-2">
                                                 <span class="bg-white inline-block">
                                                     user:
@@ -87,9 +95,9 @@
                                                 </span>
                                             </div>
                                         
-                                            <!-- 投稿文表示 -->
                                             <p class="leading-relaxed mb-3 opacity-80">
                                                 <span class="bg-white">
+                                                    <!-- 投稿にテキストがあるかないかで内容出し分け -->
                                                     投稿文：
                                                     @if( !is_null($post->post_text) )
                                                         {{ $post->post_text }}
@@ -100,6 +108,7 @@
                                             </p>
 
                                         <div class="bg-white inline-block">
+                                            <!-- 各投稿の詳細ページへのリンク -->
                                             <a href="{{ route('sns.show',$post) }}" class="hover:text-blue-300 text-blue-600 font-bold underline">
                                                 詳細はこちら
                                             </a>

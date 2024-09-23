@@ -17,6 +17,7 @@
                     <section class="text-gray-600 body-font">
                         <div class="container mx-auto flex px-5 py-5 items-center justify-center flex-col">
                             
+                            <!-- 投稿に画像があるかないかで内容出し分け -->
                             @if( !is_null($post->post_blob) )
                             <p class="mb-3 leading-relaxed">投稿画像：</p>
                             <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="" src="{{asset('storage/images/'.$post->post_blob)}}">
@@ -26,6 +27,7 @@
 
                             <div class="text-center lg:w-2/3 w-full">
                                 <p class="mb-8 leading-relaxed">
+                                    <!-- 投稿にテキストがあるかないかで内容出し分け -->
                                     投稿文：
                                     @if( !is_null($post->post_text) )
                                         {{ $post->post_text }}
@@ -35,10 +37,12 @@
                                 </p>
 
                                 <div class="font-bold mt-5">
+                                    <!-- 「投稿者名」「投稿者ページへのリンク」を出力 -->
                                     <span>ユーザー名：</span>
                                     <a href="{{ route('sns.userpage',$post->user->id) }}" class="hover:opacity-50 text-blue-500">{{ $post->user->name }}</a>
                                 </div>
 
+                                <!-- 閲覧している人が投稿者の場合、投稿の削除ボタンを出力 -->
                                 @can('delete_button',$post)
                                 <div class="flex justify-center mt-5">
                                     <form method="post" action="{{ route('sns.destroy',$post) }}">
