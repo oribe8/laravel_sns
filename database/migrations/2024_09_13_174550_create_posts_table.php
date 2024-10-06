@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id'); // リレーション用に他テーブルのid情報を入れるカラム作成
             $table->string('post_text',140);
             $table->binary('post_blob');
             $table->timestamps();

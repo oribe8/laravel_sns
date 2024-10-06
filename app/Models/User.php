@@ -47,10 +47,12 @@ class User extends Authenticatable
         ];
     }
 
+    // postsテーブルとのリレーション設定（1対多）
     public function posts() {
         return $this->hasMany(Post::class);
     }
 
+    // followsテーブルとのリレーション設定（1対多）
     public function follows() {
         return $this->hasMany(Follow::class);
     }

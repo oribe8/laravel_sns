@@ -21,15 +21,16 @@
                     <section class="text-gray-600 body-font">
                         <div class="container px-5 py-5 mx-auto">
                             <div class="flex flex-wrap -m-4">
+                                <!-- コントローラーにより受け渡された$postsを使用し、投稿を表示させていく -->
                                 @foreach($posts as $post)
                                     <!-- 全投稿（テキスト、画像）を出力していく -->
                                     <div class="p-4 w-full md:w-1/3">
                                     <!-- 投稿に画像があるかないかでタグを出し分け -->
                                     @if( !is_null($post->post_blob) )
-                                        <!-- 各投稿に保存されている画像を背景として出力 -->
+                                        <!-- asset関数を使用し、各投稿に保存されている画像を背景として出力 -->
                                         <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/'.$post->post_blob)}})">
                                     @else
-                                        <!-- noimage画像を背景として出力 -->
+                                        <!-- asset関数を使用し、noimage画像を背景として出力 -->
                                         <div class="h-full bg-cover bg-center px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative" style="background-image:url({{asset('storage/images/no_image_icon.png')}})">
                                     @endif
                                             <!-- 「投稿者名」「投稿者ページへのリンク」を出力 -->

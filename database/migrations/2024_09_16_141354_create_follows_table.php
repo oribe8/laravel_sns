@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->bigInteger('followed_id');
+            $table->foreignId('user_id'); // リレーション用に他テーブルのid情報を入れるカラム作成
+            $table->bigInteger('followed_id'); // フォロー先のユーザーidを入れるカラム
             $table->timestamps();
         });
     }

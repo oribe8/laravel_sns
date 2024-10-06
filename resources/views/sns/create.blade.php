@@ -26,7 +26,7 @@
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="message" class="leading-7 text-sm text-gray-600">投稿文</label>
-                                            <x-input-error :messages="$errors->get('post_text')" />
+                                            <x-input-error :messages="$errors->get('post_text')" /><!-- バリデーションエラーが発生した場合、Postコントローラーから$errorsを受け渡す -->
                                             <textarea id="message" name="post_text" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{old('post_text')}}</textarea>
                                         </div>
                                     </div>
@@ -34,7 +34,7 @@
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="postimageId" class="leading-7 text-sm text-gray-600">画像</label>
-                                            <x-input-error :messages="$errors->get('post_blob')" />
+                                            <x-input-error :messages="$errors->get('post_blob')" /><!-- バリデーションエラーが発生した場合、Postコントローラーから$errorsを受け渡す -->
                                             <input type="file" id="postimageId" name="post_blob" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value="{{old('post_blob')}}">
                                         </div>
                                     </div>
