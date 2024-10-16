@@ -10,5 +10,5 @@ Laravelで作成したSNSです。
 ## 使用言語など
 Laravel、Tailwind CSS 
 
-## デモページ
+## デモサイト
 https://yskdblog.com/laravel-sns/public/sns
